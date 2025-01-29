@@ -1,28 +1,12 @@
-pipeline { 
-  
-   agent any
-
-   stages {
-   
-     stage('Install Dependencies') { 
-        steps { 
-           sh 'npm install' 
-        }
-     }
-     
-     stage('Test') { 
-        steps { 
-           sh 'echo "testing application..."'
-        }
+pipeline {
+  agent {
+    docker { image 'node:16-alpine' }
+  }
+  stages {
+    stage('Test') {
+      steps {
+        sh 'node --version'
       }
-
-         stage("Deploy application") { 
-         steps { 
-           sh 'echo "deploying application..."'
-         }
-
-     }
-  
-   	}
-
-   }
+    }
+  }
+}
